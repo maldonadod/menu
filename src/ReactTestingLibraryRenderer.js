@@ -9,13 +9,17 @@ class ReactTestingLibraryRenderer {
       this.utils = render(tree)
     }
   }
-  menuTitleEquals(message) {
-    this.homeSectionMessage = this.utils.getByTestId(constants.MENU_TITLE_ID).textContent
-    expect(this.homeSectionMessage).toEqual(message)
+  async menuTitleEquals(message) {
+    const home = await this.utils.findByTestId(constants.MENU_TITLE_ID)
+    expect(home.textContent).toEqual(message)
   }
   async firstMainCourseTitleEquals(itemTitle) {
     const menu = await this.utils.findByTestId(constants.MENU_ITEMS_LIST_ID)
     expect(menu.children.item(0).textContent).toEqual(itemTitle)
+  }
+  async loadingMessageIsShown() {
+    const loading = await this.utils.findByTestId(constants.LOADING_MENU_ID)
+    expect(loading.textContent).toEqual("...")
   }
 }
 

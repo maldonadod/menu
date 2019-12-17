@@ -1,12 +1,29 @@
 import { createStore, combineReducers } from "redux";
 
-function appReducer(state = { menu: [] }, action) {
-  if (action.type === "FETCH_MENU") {
+const initialState = {
+  menu: [],
+  isLoading: false
+}
+
+function appReducer(state = initialState, action) {
+  return reducers[action.type]
+    ? reducers[action.type](state, action)
+    : state
+}
+
+const reducers = {
+  FETCH_MENU_LOADING(state, action) {
     return {
-      menu: action.payload
+      menu: state.menu,
+      isLoading: true
+    }
+  },
+  FETCH_MENU_SUCCESS(state, action) {
+    return {
+      menu: action.payload,
+      isLoading: false
     }
   }
-  return state
 }
 
 const store = createStore(

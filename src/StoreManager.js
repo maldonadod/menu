@@ -4,9 +4,12 @@ class StoreManager {
     this.store = store
   }
   async fetchMenu() {
+    this.store.dispatch({
+      type: "FETCH_MENU_LOADING"
+    })
     const items = await this.menuService.fetchMenuItems() 
     this.store.dispatch({
-      type: "FETCH_MENU",
+      type: "FETCH_MENU_SUCCESS",
       payload: items
     })
   }
