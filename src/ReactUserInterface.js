@@ -7,10 +7,10 @@ class ReactUserInterface {
     this.driver = driver
     this.store = store
   }
-  async showMenu() {
+  async showMenu(createOrder) {
     this.driver.send(
       <Provider store={this.store}>
-        <Home />
+        <Home createOrder={createOrder} />
       </Provider>
     )
   }

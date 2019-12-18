@@ -5,7 +5,10 @@ class MenuPresenter {
   }
   async render() {
     this.store.fetchMenu()
-    this.ui.showMenu()
+    const onOrderConfirm = (item) => {
+      this.store.postOrder(item)
+    }
+    this.ui.showMenu(onOrderConfirm)
   }
 }
 

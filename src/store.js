@@ -14,7 +14,7 @@ function appReducer(state = initialState, action) {
 const reducers = {
   FETCH_MENU_LOADING(state, action) {
     return {
-      menu: state.menu,
+      ...state,
       isLoading: true
     }
   },
@@ -22,6 +22,12 @@ const reducers = {
     return {
       menu: action.payload,
       isLoading: false
+    }
+  },
+  ORDER_CONFIRM_SUCCESS(state, action) {
+    return {
+      ...state,
+      hasOrder: true
     }
   }
 }

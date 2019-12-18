@@ -1,8 +1,12 @@
 import main from "./main"
 
 class ApplicationRunner {
-  openMenu(renderer, menuService) {
-    main(renderer, menuService)
+  constructor(renderer, menuService) {
+    this.renderer = renderer
+    this.menuService = menuService
+  }
+  openMenu() {
+    main(this.renderer, this.menuService)
   }
 }
 

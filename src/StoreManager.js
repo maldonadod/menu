@@ -3,6 +3,11 @@ class StoreManager {
     this.menuService = menuService
     this.store = store
   }
+  postOrder(item) {
+    this.store.dispatch({
+      type: "ORDER_CONFIRM_SUCCESS"
+    })
+  }
   async fetchMenu() {
     this.store.dispatch({
       type: "FETCH_MENU_LOADING"
