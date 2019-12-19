@@ -27,7 +27,7 @@ const reducers = {
   ORDER_CONFIRM_SUCCESS(state, action) {
     return {
       ...state,
-      hasOrder: true
+      order: action.payload
     }
   }
 }

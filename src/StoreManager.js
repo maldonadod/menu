@@ -4,8 +4,12 @@ class StoreManager {
     this.store = store
   }
   postOrder(item) {
+    const order = {
+      description: `${item.title}, esta en proceso, gracias.`
+    }
     this.store.dispatch({
-      type: "ORDER_CONFIRM_SUCCESS"
+      type: "ORDER_CONFIRM_SUCCESS",
+      payload: order
     })
   }
   async fetchMenu() {

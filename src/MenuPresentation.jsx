@@ -2,38 +2,41 @@ import React from "react"
 import ConfirmOrder from "./ConfirmOrder"
 import MenuItem from "./MenuItem"
 import constants from "./constants"
+import { connect } from "react-redux"
 
 function MenuPresentation(props) {
-  const { createOrder, hasOrder, items } = props
+  const { createOrder, order, items } = props
   const [selectedItem, openConfirmOrderDialog] = React.useState(null)
-  if (hasOrder) {
-    return (
-      <section>
-        <ThanksMessage />
-      </section>
-    )
-  } else {
-    return (
-      <section>
-        <Menu items={items} onItemClicked={openConfirmOrderDialog} />
-          {selectedItem && <ConfirmOrder
-            onConfirm={() => createOrder(selectedItem)}
-            itemTitle={selectedItem.title}
-            hide={() => openConfirmOrderDialog(null)} />}
-      </section>
-    )
-  }
+  return order
+    ? <ShowOrder description={order.description} />
+    : <ShowOrderConfirmation
+        items={items}
+        openConfirmOrderDialog={openConfirmOrderDialog}
+        selectedItem={selectedItem}
+        createOrder={createOrder}
+      />
 }
 
-function ThanksMessage() {
-  const [showMessage, setShowMessage] = React.useState(true)
-  function dissapear() {
-    setShowMessage(false)
-  }
-  setTimeout(dissapear, 1000)
-  return showMessage
-    ? <div>Thanks !!</div>
-    : null
+function ShowOrderConfirmation({ items, openConfirmOrderDialog, selectedItem, createOrder }) {
+  return (
+    <section>
+      <Menu items={items} onItemClicked={openConfirmOrderDialog} />
+        {selectedItem && <ConfirmOrder
+          onConfirm={() => createOrder(selectedItem)}
+          itemTitle={selectedItem.title}
+          hide={() => openConfirmOrderDialog(null)} />}
+    </section>
+  )
+}
+
+function ShowOrder({ description }) {
+  return (
+    <section>
+      <section data-testid={constants.ORDER_TAKEN_ID}>
+        {description}
+      </section>
+    </section>
+  )
 }
 
 function Menu({ items, onItemClicked }) {
@@ -55,4 +58,10 @@ function Menu({ items, onItemClicked }) {
   )
 }
 
-export default MenuPresentation
+function mapStateToProps(state) {
+  return {
+    order: state.app.order
+  }
+}
+
+export default connect(mapStateToProps)(MenuPresentation)

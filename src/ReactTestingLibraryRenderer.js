@@ -1,4 +1,4 @@
-import { render, fireEvent, waitForElementToBeRemoved } from "@testing-library/react"
+import { render, fireEvent } from "@testing-library/react"
 import constants from "./constants"
 
 class ReactTestingLibraryRenderer {
@@ -43,11 +43,9 @@ class ReactTestingLibraryRenderer {
     const confirmButton = this.utils.queryByText("Confirm")
     fireEvent.click(confirmButton)
   }
-  thanksMessageIsShown() {
-    this.utils.getByText("Thanks !!")
-  }
-  thanksMessageDissapear() {
-    return waitForElementToBeRemoved(() => this.utils.queryByText("Thanks !!"))
+  async orderWasTakenMessageIsShown() {
+    const orderWasTaken = await this.utils.findByTestId(constants.ORDER_TAKEN_ID)
+    expect(orderWasTaken.textContent).toEqual("Bife con papas, esta en proceso, gracias.")
   }
   menuIsNotShown() {
     const menu = this.utils.queryByTestId(constants.MENU_ID)

@@ -5,14 +5,12 @@ import constants from "./constants"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function Home(props) {
-  const { createOrder, hasOrder } = props
-  const { items, isLoading } = props
+  const { items, isLoading, createOrder } = props
   return isLoading
     ? <LoadingIndicator />
     : <MenuPresentation
         items={items}
-        createOrder={createOrder}
-        hasOrder={hasOrder} />
+        createOrder={createOrder} />
 }
 
 function LoadingIndicator() {
@@ -25,7 +23,6 @@ function mapStateToProps(state) {
   return {
     items: state.app.menu,
     isLoading: state.app.isLoading,
-    hasOrder: state.app.hasOrder,
   }
 }
 
