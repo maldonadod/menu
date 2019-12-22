@@ -2,7 +2,6 @@ import React from "react"
 import ConfirmOrder from "./ConfirmOrder"
 import MenuItem from "./MenuItem"
 import constants from "./constants"
-import { connect } from "react-redux"
 
 function MenuPresentation(props) {
   const { createOrder, order, items } = props
@@ -58,10 +57,4 @@ function Menu({ items, onItemClicked }) {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    order: state.app.order
-  }
-}
-
-export default connect(mapStateToProps)(MenuPresentation)
+export default MenuPresentation

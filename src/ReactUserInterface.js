@@ -1,17 +1,29 @@
 import React from "react"
-import Home from "./Home"
-import { Provider } from "react-redux"
+import LoadingIndicator from "./LoadingIndicator"
+import MenuPresentation from "./MenuPresentation"
 
 class ReactUserInterface {
-  constructor(driver, store) {
+  constructor(driver) {
     this.driver = driver
-    this.store = store
   }
-  async showMenu(createOrder) {
+  showLoading = () => {
+    this.driver.send(<LoadingIndicator />)
+  }
+  showMenu = (items, createOrder) => {
     this.driver.send(
-      <Provider store={this.store}>
-        <Home createOrder={createOrder} />
-      </Provider>
+      <MenuPresentation
+        items={items}
+        createOrder={createOrder}
+      />
+    )
+  }
+  showOrder = (items, createOrder, order) => {
+    this.driver.send(
+      <MenuPresentation
+        order={order}
+        items={items}
+        createOrder={createOrder}
+      />
     )
   }
 }

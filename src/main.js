@@ -5,9 +5,9 @@ import store from "./store"
 
 function main(driver, menuService) {
   new MenuPresenter(
-    new ReactUserInterface(driver, store),
+    new ReactUserInterface(driver),
     new StoreManager(menuService, store)
-  ).render()
+  )
 }
 
 export default main
