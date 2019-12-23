@@ -2,10 +2,10 @@ import ReactDOM from 'react-dom';
 import main from './main';
 import FakeMenuService from './FakeMenuService';
 
-const driver = {
+const renderer = {
   send(tree) {
     ReactDOM.render(tree, document.getElementById('root'));
   }
 }
 
-main(driver, new FakeMenuService())
+main(renderer, new FakeMenuService())

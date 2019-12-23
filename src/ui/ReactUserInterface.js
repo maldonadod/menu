@@ -5,14 +5,14 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import './index.css';
 
 class ReactUserInterface {
-  constructor(driver) {
-    this.driver = driver
+  constructor(renderer) {
+    this.renderer = renderer
   }
   showLoading = () => {
-    this.driver.send(<LoadingIndicator />)
+    this.renderer.send(<LoadingIndicator />)
   }
   showMenu = (items, createOrder) => {
-    this.driver.send(
+    this.renderer.send(
       <MenuPresentation
         items={items}
         createOrder={createOrder}
@@ -20,7 +20,7 @@ class ReactUserInterface {
     )
   }
   showOrder = (items, createOrder, order) => {
-    this.driver.send(
+    this.renderer.send(
       <MenuPresentation
         order={order}
         items={items}

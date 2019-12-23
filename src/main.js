@@ -3,9 +3,9 @@ import StoreManager from "./StoreManager";
 import MenuPresenter from "./MenuPresenter";
 import store from "./store"
 
-function main(driver, menuService) {
+function main(renderer, menuService) {
   new MenuPresenter(
-    new ReactUserInterface(driver),
+    new ReactUserInterface(renderer),
     new StoreManager(menuService, store)
   )
 }
