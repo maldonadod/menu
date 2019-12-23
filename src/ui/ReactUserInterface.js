@@ -1,6 +1,8 @@
 import React from "react"
 import LoadingIndicator from "./LoadingIndicator"
 import MenuPresentation from "./MenuPresentation"
+import "bootstrap/dist/css/bootstrap.min.css"
+import './index.css';
 
 class ReactUserInterface {
   constructor(driver) {

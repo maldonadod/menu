@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react"
-import constants from "./ui/constants"
+import constants from "../../ui/constants"
 
 class ReactTestingLibraryRenderer {
   send(tree) {

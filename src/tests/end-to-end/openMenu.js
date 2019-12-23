@@ -1,8 +1,6 @@
 import ApplicationRunner from "./ApplicationRunner"
 import ReactTestingLibraryRenderer from "./ReactTestingLibraryRenderer"
-import FakeMenuService from "./FakeMenuService"
-
-jest.setTimeout(30000);
+import FakeMenuService from "../../FakeMenuService"
 
 function openMenu() {
   const menuService = new FakeMenuService()
