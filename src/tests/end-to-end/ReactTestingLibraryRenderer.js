@@ -70,6 +70,9 @@ class ReactTestingLibraryRenderer {
     const menu = this.utils.queryByTestId(constants.MENU_ID)
     expect(menu).toEqual(null)
   }
+  openMenu() {
+    fireEvent.click(this.utils.getByText("open menu"))
+  }
 }
 
 export default ReactTestingLibraryRenderer

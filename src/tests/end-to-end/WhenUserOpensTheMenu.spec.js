@@ -9,13 +9,9 @@ function WhenUserOpensTheMenu() {
 
   let renderer;
 
-  beforeEach(() => {
-    renderer = openMenu()
-  })
+  beforeEach(() => renderer = openMenu())
 
-  afterEach(() => {
-    cleanup()
-  })
+  afterEach(cleanup)
 
   it("should see the menu provided by menu service", async () => {
     await renderer.loadingMessageIsShown()

@@ -4,9 +4,11 @@ class ApplicationRunner {
   constructor(renderer, menuService) {
     this.renderer = renderer
     this.menuService = menuService
+    main(this.renderer, this.menuService)
   }
   openMenu() {
-    main(this.renderer, this.menuService)
+    this.renderer.openMenu()
+    return this.renderer
   }
 }
 

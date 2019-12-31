@@ -28,6 +28,14 @@ class ReactUserInterface {
       />
     )
   }
+  showHome = (openMenu) => {
+    this.renderer.send(
+      <div>
+        Home
+        <button onClick={openMenu}>open menu</button>
+      </div>
+    )
+  }
 }
 
 export default ReactUserInterface

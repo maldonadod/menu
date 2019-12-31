@@ -7,7 +7,7 @@ class MenuPresenter {
     store.on("loaded-menu", this.showMenu)
     store.on("registered-order", this.showOrder)
 
-    this.store.fetchMenu()
+    this.ui.showHome(() => this.store.fetchMenu())
   }
   onOrderConfirm = item => {
     this.store.postOrder(item)
