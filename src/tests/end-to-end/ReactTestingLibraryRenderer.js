@@ -12,6 +12,9 @@ class ReactTestingLibraryRenderer {
   debug() {
     this.utils.debug()
   }
+  reload() {
+    this.utils.unmount()
+  }
   async menuTitleEquals(message) {
     const home = await this.utils.findByTestId(constants.MENU_TITLE_ID)
     expect(home.textContent).toEqual(message)

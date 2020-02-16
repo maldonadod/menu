@@ -1,6 +1,8 @@
+import Order from "./Order"
 class StoreManager {
-  constructor(menuService, store) {
+  constructor(store, menuService, orderService) {
     this.menuService = menuService
+    this.orderService = orderService
     this.store = store
     this.events = {}
     store.subscribe(this.listener)
@@ -24,14 +26,17 @@ class StoreManager {
     this.events[evenyKey] = listener
   }
 
-  postOrder(item) {
-    const order = {
-      description: `${item.title}, esta en proceso, gracias.`
+  async registerOrder(item) {
+    const order = new Order(item)
+    try {
+      await this.orderService.register(order)
+      this.store.dispatch({
+        type: "ORDER_CONFIRM_SUCCESS",
+        payload: order
+      })
+    } catch (e) {
+      console.log(e)
     }
-    this.store.dispatch({
-      type: "ORDER_CONFIRM_SUCCESS",
-      payload: order
-    })
   }
   async fetchMenu() {
     this.store.dispatch({

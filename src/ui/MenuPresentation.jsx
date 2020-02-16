@@ -2,6 +2,7 @@ import React from "react"
 import ConfirmOrder from "./ConfirmOrder"
 import MenuItem from "./MenuItem"
 import constants from "./constants"
+import ShowOrder from "./ShowOrder"
 
 function MenuPresentation(props) {
   const { createOrder, order, items } = props
@@ -24,16 +25,6 @@ function ShowOrderConfirmation({ items, openConfirmOrderDialog, selectedItem, cr
           onConfirm={() => createOrder(selectedItem)}
           itemTitle={selectedItem.title}
           hide={() => openConfirmOrderDialog(null)} />}
-    </section>
-  )
-}
-
-function ShowOrder({ description }) {
-  return (
-    <section>
-      <section data-testid={constants.ORDER_TAKEN_ID}>
-        {description}
-      </section>
     </section>
   )
 }

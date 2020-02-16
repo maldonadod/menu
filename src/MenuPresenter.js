@@ -1,5 +1,5 @@
 class MenuPresenter {
-  constructor(ui, store) {
+  constructor(ui, store, orderService) {
     this.ui = ui
     this.store = store
 
@@ -7,10 +7,12 @@ class MenuPresenter {
     store.on("loaded-menu", this.showMenu)
     store.on("registered-order", this.showOrder)
 
-    this.ui.showHome(() => this.store.fetchMenu())
+    const order = orderService.findTodaysOrderByUsername()
+
+    this.ui.showHome(() => this.store.fetchMenu(), order)
   }
   onOrderConfirm = item => {
-    this.store.postOrder(item)
+    this.store.registerOrder(item)
   }
   showOrder = (items, order) => {
     this.ui.showOrder(items, this.onOrderConfirm, order)

@@ -3,10 +3,11 @@ import StoreManager from "./StoreManager";
 import MenuPresenter from "./MenuPresenter";
 import store from "./store"
 
-function main(renderer, menuService) {
+function main(renderer, menuService, orderService) {
   new MenuPresenter(
     new ReactUserInterface(renderer),
-    new StoreManager(menuService, store)
+    new StoreManager(store, menuService, orderService),
+    orderService
   )
 }
 

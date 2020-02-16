@@ -1,6 +1,7 @@
 import React from "react"
 import LoadingIndicator from "./LoadingIndicator"
 import MenuPresentation from "./MenuPresentation"
+import ShowOrder from "./ShowOrder"
 import "bootstrap/dist/css/bootstrap.min.css"
 import './index.css';
 
@@ -28,10 +29,11 @@ class ReactUserInterface {
       />
     )
   }
-  showHome = (openMenu) => {
+  showHome = (openMenu, registeredOrder) => {
     this.renderer.send(
       <div>
         Home
+        {registeredOrder && <ShowOrder description={registeredOrder.description} />}
         <button onClick={openMenu}>open menu</button>
       </div>
     )

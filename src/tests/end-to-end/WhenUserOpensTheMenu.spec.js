@@ -1,21 +1,24 @@
 import { cleanup } from "@testing-library/react"
 import openMenu from "./openMenu"
 
-const BIFE_CON_PAPAS = "Bife con papas"
+const DISH_TITLE = "Bife con papas"
 
-describe("When user opens the menu", WhenUserOpensTheMenu)
+describe(
+  "When user opens the menu",
+  function TestWhenUserOpensTheMenu() {
 
-function WhenUserOpensTheMenu() {
+  let app;
 
-  let renderer;
-
-  beforeEach(() => renderer = openMenu())
+  beforeEach(() => {
+    app = openMenu()
+    app.openMenu()
+  })
 
   afterEach(cleanup)
 
   it("should see the menu provided by menu service", async () => {
-    await renderer.loadingMessageIsShown()
-    await renderer.menuTitleEquals("Today's Menu")
-    await renderer.firstMainCourseTitleEquals(BIFE_CON_PAPAS)
+    await app.loadingMessageIsShown()
+    await app.menuTitleEquals("Today's Menu")
+    await app.firstMainCourseTitleEquals(DISH_TITLE)
   })
-}
+})
