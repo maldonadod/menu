@@ -1,19 +1,50 @@
 import openMenu from "./openMenu"
 import { cleanup } from "@testing-library/react";
 
-const BIFE_CON_PAPAS = "Bife con papas"
+const MAIN_COURSE_TITLE = "Bife con papas"
 
-describe("When user orders a main course", WhenUserOrdersMainCourse)
+describe(
+  "When user orders a main course successfully",
+  function TestWhenUserOrdersMainCourse() {
 
-function WhenUserOrdersMainCourse() {
-  let renderer;
+  let app;
 
-  beforeEach(() => renderer = openMenu())
+  beforeEach(() => {
+    app = openMenu()
+    app.openMenu()
+  })
   afterEach(cleanup)
 
-  it("should ask you to confirm your order", async () => {
-    await renderer.order(BIFE_CON_PAPAS)
-    await renderer.orderWasTakenMessageIsShown()
-    await renderer.menuHasBeenClosed()
+  it("should show that the order was taken", async () => {
+    await app.order(MAIN_COURSE_TITLE)
+    await app.orderWasTakenMessageIsShown()
+    await app.menuHasBeenClosed()
   })
-}
+})
+
+describe(
+  "When user has registered an order and re-enters to the app",
+  function TestWhenUserHasRegisteredAnOrder() {
+
+  let app;
+
+  beforeEach(() => {
+    app = openMenu()
+    app.openMenu()
+  })
+  afterEach(cleanup)
+
+  it("should show work in progress message of the registered order", async () => {
+    await app.order(MAIN_COURSE_TITLE)
+
+    app.app.orderHaveBeenRegistered()
+
+    await app.orderWasTakenMessageIsShown()
+    await app.reload()
+
+    app = openMenu(false)
+    app.app.queryOrderHaveBeenCalled()
+
+    await app.orderWasTakenMessageIsShown()
+  })
+})

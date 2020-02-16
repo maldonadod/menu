@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import main from './main';
 import FakeMenuService from './FakeMenuService';
+import OrderService from './OrderService';
 
 const renderer = {
   send(tree) {
@@ -8,4 +9,4 @@ const renderer = {
   }
 }
 
-main(renderer, new FakeMenuService())
+main(renderer, new FakeMenuService(), new OrderService())
